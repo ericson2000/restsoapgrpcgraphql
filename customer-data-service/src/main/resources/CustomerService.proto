@@ -1,0 +1,42 @@
+syntax = "proto3";
+
+option java_package = "com.example.customerdataservice.web.grpc.stub";
+
+service CustomerService {
+    rpc getAllCustomers (getAllCustomersRequest) returns (getAllCustomersResponse);
+    rpc getCustomerById (getCustomerByIdRequest) returns (getCustomerByIdResponse);
+    rpc saveCustomer (saveCustomerRequest) returns (saveCustomerResponse);
+
+}
+
+message getAllCustomersRequest {}
+
+message getAllCustomersResponse {
+    repeated Customer customers = 1;
+}
+message saveCustomerRequest {
+    CustomerRequest request = 1;
+}
+
+message saveCustomerResponse {
+    Customer customers = 1;
+}
+
+message Customer {
+    int64 id = 1;
+    string name = 2;
+    string email = 3;
+}
+
+message getCustomerByIdRequest {
+    int64 customerId = 1;
+}
+
+message getCustomerByIdResponse {
+    Customer customer = 1;
+}
+
+message CustomerRequest {
+    string name = 1;
+    string email = 2;
+}
